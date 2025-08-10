@@ -18,5 +18,6 @@ spec:
       containers:
         - name: nginx
           image: rani19/hello-web:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
