@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: hello-web
   namespace: dev
+  labels:
+    app: hello-web
 spec:
   replicas: 1
   selector:
@@ -15,18 +17,6 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: rani19/hello-web:latest # Jenkins will replace :latest with a commit tag
+          image: rani19/hello-web:latest
           ports:
             - containerPort: 80
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 3
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 10
